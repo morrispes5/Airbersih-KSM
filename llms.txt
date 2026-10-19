@@ -3,6 +3,7 @@
 > Aplikasi administrasi air KSM Banyu Bening RT05 untuk pengurus utama, bendahara, dan petugas meter. Bahasa Indonesia.
 
 ## Konteks utama
+- [Aplikasi online](https://airbersih-ksm.vercel.app/login): Laravel berjalan di Vercel, akses isi melalui akun pengurus.
 - [AI_START_HERE](https://github.com/morrispes5/Airbersih-KSM/blob/main/AI_START_HERE.md): tujuan, alur, peta kode, dan batas data.
 - [README](https://github.com/morrispes5/Airbersih-KSM): kode dan dokumentasi.
 - [Status cloud](https://github.com/morrispes5/Airbersih-KSM/blob/main/docs/CLOUD_STATUS.md): bedakan kode online, panduan online, database, dan server aplikasi.
@@ -15,6 +16,6 @@ Pelanggan dan sambungan -> angka meter pertama -> pembacaan berikutnya + foto ->
 Contoh sintetis: 130 - 100 = 30 m3; 30 x Rp10.000 + admin Rp5.000 = Rp305.000. Riwayat 51 anggota Desember 2025 bukan 51 sambungan aktif saat ini.
 
 ## Status 19 Oktober 2026
-Situs ini adalah panduan publik statis, bukan aplikasi transaksi. Proyek WoWSQL telah terhubung ke plugin dan identitas PostgreSQL berhasil dibaca. Aplikasi lama masih memakai konfigurasi Aiven dan storage Supabase; belum ada cutover atau server Laravel publik. Pengguna melarang Docker. Tidak ada data warga, kredensial atau bukti pembayaran di situs ini.
+Situs ini adalah panduan publik statis. Aplikasi Laravel berjalan sementara di https://airbersih-ksm.vercel.app/login dengan Aiven operasional dan storage privat Supabase. Login, 11 halaman, Livewire update, upload foto sintetis/CORS dan cleanup telah diperiksa; tidak ada transaksi bisnis nyata dibuat untuk verifikasi. WoWSQL terhubung ke plugin, tetapi koneksi langsungnya gagal pencocokan sertifikat sehingga belum cutover. Pengguna melarang Docker dan jalur deployment ini tidak memakai Docker. Tidak ada data warga, kredensial atau bukti pembayaran di situs panduan ini.
 
 Ketersediaan URL tidak menjamin semua AI bisa login, merender JavaScript, membaca kode privat atau mengakses database. Izin masing-masing diperlukan. Ringkasan ini membantu penemuan konteks; bukan jaminan dukungan standar tertentu oleh setiap agent.
