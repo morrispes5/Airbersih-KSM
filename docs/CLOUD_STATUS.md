@@ -6,17 +6,17 @@ Diperbarui 19 Oktober 2026, Asia/Jakarta. Status berikut menjelaskan lingkup pub
 | --- | --- |
 | GitHub | Repository publik `morrispes5/Airbersih-KSM` terisi source dan dokumentasi; branch main berhasil diunggah dan berkas konteks terbaca melalui API GitHub |
 | Panduan publik | Live di https://morrispes5.github.io/Airbersih-KSM/ ; deployment Pages sukses, HTTP 200, judul dan batas aplikasi terbaca; llms.txt juga HTTP 200 |
-| Aplikasi Laravel online | Belum dideploy ke server publik |
+| Aplikasi Laravel online | **Live sementara:** https://airbersih-ksm.vercel.app/login ; Vercel project airbersih-ksm, scope morrizshkki, deployment dpl_6YwbBUUtP69BDyeePgBkLmdcB1wG |
 | WoWSQL | Proyek Airbersih KSM, slug `airbersih-ksm-6bc263eb`, paket Free, region ap-south-1. Plugin terhubung; identitas PostgreSQL 18.6 dan query berhasil diverifikasi. Tabel `project_context` berisi empat catatan konteks tanpa data warga |
-| Database aplikasi berjalan | Konfigurasi lama tetap PostgreSQL Aiven; belum ada cutover ke WoWSQL |
+| Database aplikasi berjalan | PostgreSQL Aiven operasional yang sudah ada; TLS verify-full dipertahankan. WoWSQL belum cutover karena sertifikat endpoint pooler tidak cocok dengan hostname |
 | File operasional | Konfigurasi lama memakai storage privat Supabase; tidak dipindahkan dalam publikasi kode |
 | Docker | Tidak dipakai dalam jalur publikasi/server yang disiapkan |
 | Data awal dan UAT | Belum disahkan hanya karena repository dibuat |
 
-## Syarat untuk menyelesaikan aplikasi online
+## Pekerjaan lanjutan yang belum selesai
 
 1. Verifikasi koneksi PostgreSQL langsung dari server, CA/TLS, hak akses runtime/migrator dan dukungan fitur SQL aplikasi. Query plugin yang berhasil belum membuktikan koneksi PDO dari server. Jangan mengganti sumber operasional sebelum salinan dan readback diverifikasi.
-2. Sediakan server Laravel tanpa Docker: domain/HTTPS, PHP-FPM, web server, worker yang dikelola, secret server, backup dan pemantauan. Belum ada target server atau akses deployment yang dipilih dalam pekerjaan publikasi ini.
+2. Vercel dipilih sementara setelah pemilik menolak jalur VPS/domain yang terganggu pada Wi-Fi. Aplikasi memakai runtime PHP tanpa Docker, session/cache database, antrean sync, dan upload sementara ke cloud. Hosting permanen dengan worker, dukungan impor besar, backup terjadwal dan pemantauan masih perlu diputuskan untuk operasi jangka panjang.
 3. Sesuaikan guard provider dengan tetap mempertahankan penolakan target asing, identitas runtime, isolasi test, dan TLS. Jalankan migrasi aditif pada target baru, lalu uji alur meter → tagihan → pembayaran → kas.
 4. Pisahkan demo sintetis dari operasional. Verifikasi akses manusia dari browser lain dan akses agent sesuai jenis tool-nya.
 
@@ -27,6 +27,14 @@ Diperbarui 19 Oktober 2026, Asia/Jakarta. Status berikut menjelaskan lingkup pub
 - Panduan tanpa login: https://morrispes5.github.io/Airbersih-KSM/
 
 Ketersediaan tautan publik membantu membaca penjelasan, tetapi tidak menjamin semua agent dapat merender JavaScript, login, menjalankan kode, atau mengakses database. Akses data operasional tetap memerlukan otorisasi.
+
+## Deployment aplikasi yang sudah diverifikasi
+
+Vercel community runtime `vercel-php@0.8.0` menjalankan PHP 8.4. Source masuk melalui paket CLI terpilih, bukan upload folder privat atau Docker. Rahasia 30 variabel per lingkungan disimpan sebagai Secret Vercel melalui stdin; nilainya tidak dicetak atau disimpan di Git. File CA/trust untuk deployment berada dalam paket fungsi, di luar jalur statis. Tidak ada reset/seed/migrasi database operasional.
+
+Alamat utama mendapat HTTP 200 tanpa login Vercel. Login aplikasi memakai akun operasional yang sudah ada dan dilanjutkan ke Beranda; 11 halaman pengurus berhasil dibaca, serta satu Livewire reset formulir berhasil diproses. Foto meter sintetis diunggah melalui presigned S3, pemeriksaan CORS lolos, Livewire menyelesaikan upload, lalu reset formulir menghapus file sementara. Tidak ada pelanggan, meter, invoice, pembayaran, atau saldo operasional yang dibuat untuk pemeriksaan ini.
+
+Backend lulus **65 tes / 352 assertions** pada database uji Aiven. Tes baru buffer upload lulus terpisah **2 tes / 5 assertions**. Ini bukan klaim browser menjalankan seluruh alur pembayaran melalui Vercel; pengujian remote berfokus pada login, render halaman, Livewire, dan upload cloud tanpa transaksi nyata. Serverless memiliki batas request, waktu eksekusi, serta filesystem sementara; impor workbook besar dan backup besar tetap perlu validasi tersendiri. Endpoint pooler WoWSQL terdeteksi mengirim sertifikat `*.wowsql.com` yang tidak sesuai dengan host `ap-south-1.pooler.wowsql.com`; verifikasi tidak dimatikan.
 
 ## WoWSQL yang sudah dilakukan
 

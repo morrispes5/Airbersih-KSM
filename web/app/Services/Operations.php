@@ -86,7 +86,7 @@ class Operations
         Validator::make(['file' => $f], ['file' => 'required|file|mimes:jpg,jpeg,png,webp|max:5120'])->validate();
         $path = $f->store('attachments', PrivateFiles::disk());
         try {
-            Attachment::create(['owner_type' => $type, 'owner_id' => $id, 'path' => $path, 'mime' => $f->getMimeType(), 'bytes' => $f->getSize(), 'checksum' => hash_file('sha256', $f->getRealPath())]);
+            Attachment::create(['owner_type' => $type, 'owner_id' => $id, 'path' => $path, 'mime' => $f->getMimeType(), 'bytes' => $f->getSize(), 'checksum' => PrivateFiles::hash($path)]);
         } catch (\Throwable $e) {
             Storage::disk(PrivateFiles::disk())->delete($path);
             throw $e;

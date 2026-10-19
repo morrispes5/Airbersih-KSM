@@ -30,7 +30,9 @@ jobs:
       - run: composer install --no-interaction --prefer-dist
       - run: vendor/bin/pint --test -v
       - name: PHP syntax
-        run: find app bootstrap config database routes scripts tests -name '*.php' -not -path 'bootstrap/cache/*' -print0 | xargs -0 -n1 php -l
+        run: find api app bootstrap config database routes scripts tests -name '*.php' -not -path 'bootstrap/cache/*' -print0 | xargs -0 -n1 php -l
+      - name: Unit tests without cloud credentials
+        run: vendor/bin/phpunit --testsuite Unit
       - run: npm ci
       - run: npm run build
       - run: node --check tests/browser/flow.cjs

@@ -30,10 +30,11 @@ return [
 
     'disks' => [
         'cloud' => [
-            'http' => ['verify' => dirname(base_path()).'/private/config/http-ca-bundle.pem'],
+            'http' => ['verify' => env('AIR_HTTP_CA_PATH', dirname(base_path()).'/private/config/http-ca-bundle.pem')],
             'driver' => 's3', 'key' => env('CLOUD_ACCESS_KEY_ID'), 'secret' => env('CLOUD_SECRET_ACCESS_KEY'),
             'region' => 'ap-southeast-1', 'bucket' => env('CLOUD_BUCKET'), 'endpoint' => env('CLOUD_ENDPOINT'),
             'use_path_style_endpoint' => true, 'visibility' => 'private', 'throw' => true,
+            'root' => env('CLOUD_ROOT', ''),
             'request_checksum_calculation' => 'when_required', 'response_checksum_validation' => 'when_required',
         ],
 

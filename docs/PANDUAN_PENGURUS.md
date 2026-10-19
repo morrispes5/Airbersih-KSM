@@ -4,6 +4,8 @@ Panduan penggunaan, 17 Oktober 2026. Aplikasi mencatat pelanggan air, angka mete
 
 ## Membuka aplikasi
 
+Sejak deployment sementara 19 Oktober 2026, pengurus dapat membuka **https://airbersih-ksm.vercel.app/login** dari HP atau komputer dengan internet. Akun operasional yang sudah diberikan tetap berlaku. Aplikasi cloud tidak memerlukan laptop pengembang terus menyala. Keterangan localhost berikut tetap untuk penggunaan lokal.
+
 Jalankan aplikasi pada komputer yang sudah disiapkan, lalu buka **http://127.0.0.1:8085/login**. Gunakan akun yang diberikan pengelola. Internet diperlukan agar catatan dan dokumen dapat disimpan. Alamat ini hanya dapat dibuka pada komputer tempat aplikasi dijalankan.
 
 Setelah masuk, buka **Beranda → Mulai dari sini**. Untuk bantuan, pilih **Panduan penggunaan** pada menu. Pada ponsel atau jendela kecil, buka menu melalui tombol ☰. Kotak **Cara memakai halaman ini** menjelaskan pekerjaan di halaman yang sedang dibuka.

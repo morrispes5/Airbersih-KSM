@@ -17,6 +17,7 @@ Contoh sintetis: meter 100 menjadi 130 berarti 30 m³. Dengan tarif awal Rp10.00
 ## Status dan batas fakta
 
 - Stack aplikasi: PHP 8.4, Laravel 13, Livewire 4, Blade, Tailwind/Vite, PostgreSQL, private S3-compatible storage, database queue.
+- **Aplikasi kini online di https://airbersih-ksm.vercel.app/login.** Deployment sementara Vercel memakai PHP community runtime 0.8.0, Aiven operasional dan storage privat Supabase yang sudah ada; tidak memakai Docker. Login, 11 halaman, Livewire update, dan unggah cloud sintetis/CORS/cleanup sudah diperiksa.
 - Deployment yang sudah didokumentasikan sebelum publikasi ini: server aplikasi lokal, database Aiven dan storage Supabase cloud. Tidak ada Docker lokal.
 - Tujuan terbaru pemilik: repository GitHub dan panduan publik; WoWSQL sebagai kandidat database PostgreSQL cloud; server aplikasi tanpa Docker.
 - WoWSQL bukan MySQL. Pilihan WoWSQL dikonfirmasi kembali oleh pemilik pada 19 Oktober 2026.
@@ -44,7 +45,7 @@ Contoh sintetis: meter 100 menjadi 130 berarti 30 m³. Dengan tarif awal Rp10.00
 
 1. Baca `AGENTS.md`, `docs/CLOUD_STATUS.md`, `docs/ARCHITECTURE.md`, dan `docs/PANDUAN_PENGURUS.md`.
 2. Repository publik hanya berisi kode, konfigurasi contoh, dan dokumentasi yang dipilih. `.env`, akun, kunci, sertifikat, Excel asli, foto meter, data warga, dump, serta bukti operasional tidak tersedia di sini.
-3. Jangan menurunkan verifikasi TLS atau melepas DatabaseGuard agar koneksi baru tampak berhasil. Konfigurasi saat ini masih membatasi host Aiven; WoWSQL memerlukan adaptasi terarah dan pengujian sebelum cutover.
+3. Jangan menurunkan verifikasi TLS atau melepas DatabaseGuard agar koneksi baru tampak berhasil. Ada profil preview WoWSQL yang terbatas, tetapi endpoint langsungnya gagal pencocokan sertifikat. Deployment aktif tetap menggunakan profil Aiven, bukan cutover WoWSQL.
 4. Jangan menjalankan `migrate:fresh`, seed contoh, atau restore terhadap operasional. Uji integrasi membutuhkan target uji terisolasi yang disediakan pemilik. CI kualitas tanpa kredensial bukan pengujian transaksi.
 5. Gunakan bahasa Indonesia untuk pengurus. Setiap angka contoh harus berlabel contoh; setiap status deployment harus punya bukti. Akses browser, GitHub, dan database adalah akses berbeda; URL publik tidak memberi AI izin ke data warga.
 

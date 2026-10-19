@@ -407,7 +407,7 @@ class Workspace extends Component
         $this->access();
         Gate::authorize('finance');
         $this->validate(['workbook' => 'required|file|extensions:xlsx|max:61440']);
-        $hash = hash_file('sha256', $this->workbook->getRealPath());
+        $hash = PrivateFiles::withUpload($this->workbook, fn ($path) => hash_file('sha256', $path));
         $batch = ImportBatch::where('hash', $hash)->first();
         if ($batch) {
             $this->batchId = $batch->id;
@@ -417,7 +417,7 @@ class Workspace extends Component
 
             return;
         }
-        $path = PrivateFiles::store($this->workbook->getRealPath(), 'imports/'.Str::uuid().'.xlsx');
+        $path = PrivateFiles::withUpload($this->workbook, fn ($source) => PrivateFiles::store($source, 'imports/'.Str::uuid().'.xlsx'));
         try {
             $batch = ImportBatch::create(['hash' => $hash, 'name' => mb_substr(basename($this->workbook->getClientOriginalName()), 0, 200), 'path' => $path, 'operator_id' => auth()->id()]);
         } catch (\Throwable $e) {

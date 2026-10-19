@@ -3,10 +3,41 @@
 namespace App\Services;
 
 use App\Support\CloudNotReady;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 final class PrivateFiles
 {
+    public static function withUpload(UploadedFile $file, callable $callback): mixed
+    {
+        if (is_file($file->getRealPath())) {
+            return $callback($file->getRealPath());
+        }
+        if (! method_exists($file, 'readStream')) {
+            throw new \RuntimeException('Berkas unggahan tidak tersedia. Unggah kembali.');
+        }
+        $source = $file->readStream();
+        if (! is_resource($source)) {
+            throw new \RuntimeException('Berkas unggahan cloud tidak dapat dibaca.');
+        }
+        $temp = tempnam(sys_get_temp_dir(), 'air-upload-');
+        try {
+            $target = fopen($temp, 'wb');
+            try {
+                stream_copy_to_stream($source, $target);
+            } finally {
+                fclose($source);
+                fclose($target);
+            }
+
+            return $callback($temp);
+        } finally {
+            if (is_file($temp)) {
+                unlink($temp);
+            }
+        }
+    }
+
     public static function disk(): string
     {
         $disk = config('airbersih.documents_disk');

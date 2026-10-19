@@ -28,7 +28,7 @@ class Backups
 
     private function directory(): string
     {
-        $dir = dirname(base_path()).'/private/backups';
+        $dir = config('airbersih.private_path').'/backups';
         if (! is_dir($dir)) {
             mkdir($dir, 0700, true);
         }

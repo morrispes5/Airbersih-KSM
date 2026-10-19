@@ -1,6 +1,14 @@
 # Persiapan server Laravel tanpa Docker
 
-Status: panduan penerapan; aplikasi belum dideploy melalui panduan ini. Target server belum dipilih. Gunakan VPS/hosting Laravel dengan PHP-FPM dan worker yang bisa dikelola, tanpa Docker.
+Status 19 Oktober: aplikasi sementara telah dideploy ke **https://airbersih-ksm.vercel.app/login** tanpa Docker, memakai runtime PHP komunitas yang dipin `vercel-php@0.8.0`. Bagian VPS/PHP-FPM di bawah adalah jalur hosting permanen; belum diterapkan. Pemilik meminta penyedia lain karena jalur Wi-Fi ke VPS/domain sebelumnya bermasalah.
+
+## Deployment sementara Vercel
+
+`web/api/index.php` menyiapkan cache/view/buffer di `/tmp`, memuat CA database dari rahasia server, dan memuat trust HTTPS dari paket fungsi. File permanen tetap cloud. Session dan cache memakai database; queue sync menjalankan pekerjaan dalam request. `web/vercel.json` merutekan aset build secara statis dan request aplikasi ke PHP.
+
+Paket disiapkan oleh `python scripts/prepare-vercel.py` setelah build Vite. Konfigurasi privat berasal dari lingkungan operasional dan e2e yang disediakan pemilik; masukkan sebagai Secret melalui stdin CLI, jangan lewat argv atau Git. Paket deployment terpisah ada di `private/vercel/Airbersih-KSM`. `.vercel/project.json` hanya memilih project/scope; kredensial CLI tetap dikelola Vercel. Jalankan CLI dari direktori paket tersebut, bukan root checkout. Preview harus memakai `--target=preview`; deployment pertama suatu project dapat otomatis menjadi production. Production memakai `--prod --scope morrizshkki`.
+
+Verifikasi login/11 halaman dan upload sintetis dicatat di CLOUD_STATUS. Endpoint utama dipublikasikan; isi aplikasi tetap memerlukan login. Akun lama tetap berlaku. GitHub source belum tersambung untuk auto deploy; setiap pembaruan aplikasi memerlukan persiapan paket serta deployment CLI. Batas serverless dan impor besar tetap berlaku.
 
 ## Komponen
 

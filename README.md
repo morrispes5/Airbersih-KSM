@@ -2,7 +2,7 @@
 
 Aplikasi administrasi air **KSM Banyu Bening RT05** untuk mencatat pelanggan, angka meter, tagihan, pembayaran, kas, dan laporan bulanan.
 
-**[Baca penjelasan visual dan panduan publik](https://morrispes5.github.io/Airbersih-KSM/)** · **[Mulai di sini untuk agent AI](AI_START_HERE.md)** · **[Status cloud](docs/CLOUD_STATUS.md)**
+**[Buka aplikasi](https://airbersih-ksm.vercel.app/login)** · **[Panduan publik](https://morrispes5.github.io/Airbersih-KSM/)** · **[Mulai untuk agent AI](AI_START_HERE.md)** · **[Status cloud](docs/CLOUD_STATUS.md)**
 
 ## Cara kerjanya
 
@@ -36,7 +36,7 @@ Contoh: meter 100 menjadi 130 → pemakaian 30 m³ → Rp300.000 + administrasi 
 
 ## Status yang perlu dipahami
 
-Kode dan panduan dapat dipublikasikan tanpa membuka data warga. **GitHub Pages menjalankan situs penjelasan, bukan aplikasi Laravel.** Aplikasi lengkap masih memerlukan server PHP, worker, konfigurasi privat, serta validasi koneksi database. Target provider terbaru adalah WoWSQL, tetapi penerapannya mengikuti [status cloud](docs/CLOUD_STATUS.md).
+**Aplikasi Laravel sudah berjalan sementara di Vercel** pada alamat di atas, memakai database Aiven dan storage privat Supabase yang sudah ada. GitHub Pages menayangkan penjelasan tanpa login. Login akun, 11 halaman pengurus, Livewire update, serta upload cloud sintetis dan cleanup diverifikasi. WoWSQL terhubung ke plugin tetapi koneksi PostgreSQL langsungnya gagal pencocokan sertifikat TLS, sehingga belum menjadi database aplikasi. Lihat [status cloud](docs/CLOUD_STATUS.md).
 
 Catatan proyek 17 Oktober 2026 memisahkan riwayat 51 anggota Desember 2025 dari pelanggan/sambungan operasional. Data awal dan penerimaan pengurus belum boleh dianggap selesai hanya karena kode atau tes tersedia.
 

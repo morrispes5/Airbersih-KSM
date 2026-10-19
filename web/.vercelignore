@@ -1,0 +1,11 @@
+.env
+.env.*
+.git
+.vercel
+node_modules
+vendor
+tests
+scripts
+storage/**
+bootstrap/cache/*.php
+!public/build/**

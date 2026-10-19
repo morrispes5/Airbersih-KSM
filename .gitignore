@@ -24,5 +24,6 @@
 /web/public/build/
 /web/test-results/
 /web/playwright-report/
+/web/.vercel/
 /web/.phpunit.result.cache
 /web/database/*.sqlite*

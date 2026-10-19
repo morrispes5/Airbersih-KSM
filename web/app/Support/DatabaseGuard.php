@@ -11,6 +11,20 @@ final class DatabaseGuard
     {
         $c = config('database.connections.pgsql');
         $destructiveCommand = app()->runningInConsole() && in_array($_SERVER['argv'][1] ?? '', ['migrate:fresh', 'migrate:reset', 'migrate:refresh', 'migrate:rollback', 'db:wipe'], true);
+        if (config('airbersih.database_profile') === 'wowsql-preview') {
+            $project = config('airbersih.wowsql_project');
+            $identity = is_string($project) ? str_replace('-', '_', $project) : '';
+            if ($testingOnly || $destructiveCommand || ! app()->environment(['cloud-preview', 'cloud-preview-migration'])
+                || $project !== 'airbersih-ksm-6bc263eb' || config('database.default') !== 'pgsql' || ! empty($c['url'])
+                || $c['host'] !== 'ap-south-1.pooler.wowsql.com' || (int) $c['port'] !== 6543
+                || $c['database'] !== 'db_'.$identity || $c['username'] !== 'u_'.$identity
+                || $c['sslmode'] !== 'verify-full' || ! is_file(config('airbersih.ca_path'))) {
+                throw new RuntimeException('Target preview WoWSQL ditolak: identitas, TLS, atau lingkungan tidak sesuai.');
+            }
+            self::verifyIdentity($c);
+
+            return;
+        }
         $allowed = app()->environment(['testing', 'e2e']) || $testingOnly || $destructiveCommand
             ? ['airbersih_test' => ['airbersih_test_runner']]
             : (app()->environment(['operational', 'operational-migration'])
@@ -21,6 +35,11 @@ final class DatabaseGuard
             || ! str_ends_with($c['host'], '.aivencloud.com') || ! is_file(config('airbersih.ca_path'))) {
             throw new RuntimeException('Target database ditolak: wajib database Air Bersih yang terisolasi dengan TLS terverifikasi.');
         }
+        self::verifyIdentity($c);
+    }
+
+    private static function verifyIdentity(array $c): void
+    {
         $actual = DB::selectOne('SELECT current_database() AS db, current_user AS role');
         if ($actual->db !== $c['database'] || $actual->role !== $c['username']) {
             throw new RuntimeException('Identitas database tidak sesuai konfigurasi.');

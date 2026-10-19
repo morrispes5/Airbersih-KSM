@@ -7,7 +7,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'private' / 'publication' / 'Airbersih-KSM'
-TEXT = {'.php', '.json', '.lock', '.js', '.cjs', '.css', '.xml', '.md', '.yml', '.yaml', '.ps1', '.py', '.txt', '.example', '.service', '.html', '.svg'}
+TEXT = {'.php', '.ini', '.json', '.lock', '.js', '.cjs', '.css', '.xml', '.md', '.yml', '.yaml', '.ps1', '.py', '.txt', '.example', '.service', '.html', '.svg'}
 
 
 def selected_files():
@@ -18,9 +18,9 @@ def selected_files():
             continue
         path = Path(name)
         if name.startswith(('web/', 'scripts/', 'site/', 'deploy/')) or name == '.github/workflows/quality.yml':
-            if name.startswith('web/') and ('vendor' in path.parts or 'node_modules' in path.parts or 'storage' in path.parts or '.env' in path.name and path.name != '.env.example'):
+            if name.startswith('web/') and ('vendor' in path.parts or 'node_modules' in path.parts or 'storage' in path.parts or '.vercel' in path.parts or '.env' in path.name and path.name != '.env.example'):
                 continue
-            if path.suffix in TEXT or path.name in {'.gitignore', '.gitattributes', '.editorconfig', 'artisan', '.htaccess', 'favicon.ico', 'robots.txt', '.nojekyll'}:
+            if path.suffix in TEXT or path.name in {'.gitignore', '.gitattributes', '.editorconfig', '.vercelignore', 'artisan', '.htaccess', 'favicon.ico', 'robots.txt', '.nojekyll'}:
                 chosen[name] = ROOT / name
     chosen.update({name: ROOT / name for name in ['AI_START_HERE.md', 'AGENTS.md', '.gitignore', '.gitattributes']})
     chosen['README.md'] = ROOT / 'docs/public/README.md'
