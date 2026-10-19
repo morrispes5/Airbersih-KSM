@@ -28,7 +28,7 @@ jobs:
           cache-dependency-path: web/package-lock.json
       - run: composer validate --strict
       - run: composer install --no-interaction --prefer-dist
-      - run: vendor/bin/pint --test
+      - run: vendor/bin/pint --test --diff
       - name: PHP syntax
         run: find app bootstrap config database routes scripts tests -name '*.php' -not -path 'bootstrap/cache/*' -print0 | xargs -0 -n1 php -l
       - run: npm ci

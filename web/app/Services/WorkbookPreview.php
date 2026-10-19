@@ -85,6 +85,6 @@ class WorkbookPreview
             gc_collect_cycles();
         }
 
-        return ['sheets' => $sheets, 'media_count' => $media, 'mode' => 'preview_only', 'notice' => 'Tidak ada data pelanggan, meter, invoice atau kas yang diposting. Formula memakai cache tersimpan, tidak dihitung ulang.', 'peak_memory_mb' => round(memory_get_peak_usage(true) / 1024 / 1024,1)];
+        return ['sheets' => $sheets, 'media_count' => $media, 'mode' => 'preview_only', 'notice' => 'Tidak ada data pelanggan, meter, invoice atau kas yang diposting. Formula memakai cache tersimpan, tidak dihitung ulang.', 'peak_memory_mb' => round(memory_get_peak_usage(true) / 1024 / 1024, 1)];
     }
 }
