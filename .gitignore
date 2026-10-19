@@ -1,6 +1,8 @@
 # Sumber privat dan hasil pemeriksaan yang berisi data pelanggan.
 /private/
 /tmp/
+__pycache__/
+*.pyc
 .env
 .env.*
 !.env.example
@@ -27,3 +29,4 @@
 /web/.vercel/
 /web/.phpunit.result.cache
 /web/database/*.sqlite*
+
