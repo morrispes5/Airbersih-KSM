@@ -13,6 +13,12 @@ Diperbarui 19 Oktober 2026, Asia/Jakarta. Status berikut menjelaskan lingkup pub
 | Docker | Tidak dipakai dalam jalur publikasi/server yang disiapkan |
 | Data awal dan UAT | Belum disahkan hanya karena repository dibuat |
 
+## Verifikasi ulang akses online — 19 Oktober 2026, 21.20 WIB
+
+Deployment production tetap berstatus Ready pada Vercel. Login akun pengurus berhasil dari browser ke Beranda; navigasi ke Panduan penggunaan juga berhasil. Pemeriksaan HTTP terautentikasi lulus untuk 11 halaman, Livewire, unggah foto sintetis beserta CORS/penyelesaian/pembersihan, serta unduh laporan CSV dan PDF yang isinya dikenali sebagai format sebenarnya. Tidak ada transaksi bisnis nyata yang dibuat.
+
+Server terpisah di luar komputer pemilik juga mengikuti alamat publik dan memperoleh HTTP 200 pada `/login`. Aplikasi, database Aiven, dan berkas privat Supabase berjalan di cloud; server lokal dan laptop pemilik tidak perlu dinyalakan untuk melayani pengurus. Pemeriksaan ini tidak menyelesaikan masalah sertifikat WoWSQL atau mengesahkan data awal. Tidak ada deployment kode baru yang diperlukan dalam verifikasi ulang ini.
+
 ## Pekerjaan lanjutan yang belum selesai
 
 1. Verifikasi koneksi PostgreSQL langsung dari server, CA/TLS, hak akses runtime/migrator dan dukungan fitur SQL aplikasi. Query plugin yang berhasil belum membuktikan koneksi PDO dari server. Jangan mengganti sumber operasional sebelum salinan dan readback diverifikasi.
@@ -47,4 +53,3 @@ Agent yang sudah diberi akses WoWSQL dapat mulai dengan query baca: `SELECT cont
 Snapshot awal memuat 171 berkas terpilih, termasuk placeholder direktori runtime kosong. Pemeriksaan pola kredensial tidak menemukan kecocokan; nama staged file dan konfigurasi contoh diperiksa. Riwayat Git lama dan data privat tidak dikirim. Simulasi halaman memeriksa 30 m³ → Rp305.000, 50 m³ → Rp505.000, desimal 30,125 m³ → Rp306.250, dan penolakan angka turun. Browser 1280, 390, dan 320 piksel tidak melebar; console error kosong. Composer validate, Pint lokal, dan build aset lulus.
 
 CI GitHub Linux **lulus untuk kode deployment** pada commit `42fc04f` ([run 39254891240](https://github.com/morrispes5/Airbersih-KSM/actions/runs/39254891240)): validasi/install lockfile, Pint, sintaks PHP termasuk entrypoint Vercel, unit tests tanpa kredensial cloud, install/build frontend, sintaks tiga skrip browser, serta audit Composer/npm. Masalah format awal pada WorkbookPreview.php sudah diperbaiki. CI ini tidak menjalankan alur transaksi/database cloud; regresi database lokal dan verifikasi HTTP remote dijelaskan terpisah di atas. Perubahan penutup setelah commit tersebut hanya dokumentasi/ignore dan tidak menjalankan CI ulang.
-

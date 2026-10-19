@@ -17,7 +17,7 @@ Contoh sintetis: meter 100 menjadi 130 berarti 30 m³. Dengan tarif awal Rp10.00
 ## Status dan batas fakta
 
 - Stack aplikasi: PHP 8.4, Laravel 13, Livewire 4, Blade, Tailwind/Vite, PostgreSQL, private S3-compatible storage, database queue.
-- **Aplikasi kini online di https://airbersih-ksm.vercel.app/login.** Deployment sementara Vercel memakai PHP community runtime 0.8.0, Aiven operasional dan storage privat Supabase yang sudah ada; tidak memakai Docker. Login, 11 halaman, Livewire update, dan unggah cloud sintetis/CORS/cleanup sudah diperiksa.
+- **Aplikasi kini online di https://airbersih-ksm.vercel.app/login.** Deployment sementara Vercel memakai PHP community runtime 0.8.0, Aiven operasional dan storage privat Supabase yang sudah ada; tidak memakai Docker. Verifikasi ulang 19 Oktober 2026 pukul 21.20 WIB lulus untuk login browser, 11 halaman, Livewire update, unggah cloud sintetis/CORS/cleanup, serta unduh laporan CSV/PDF. Server terpisah di luar PC pemilik juga memperoleh HTTP 200 pada halaman login; laptop pemilik tidak perlu menyala untuk melayani aplikasi.
 - Deployment yang sudah didokumentasikan sebelum publikasi ini: server aplikasi lokal, database Aiven dan storage Supabase cloud. Tidak ada Docker lokal.
 - Tujuan terbaru pemilik: repository GitHub dan panduan publik; WoWSQL sebagai kandidat database PostgreSQL cloud; server aplikasi tanpa Docker.
 - WoWSQL bukan MySQL. Pilihan WoWSQL dikonfirmasi kembali oleh pemilik pada 19 Oktober 2026.
