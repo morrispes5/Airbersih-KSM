@@ -1,0 +1,23 @@
+# Template: sesuaikan path, akun service dan secret di server tujuan.
+# Ini bukan service terpasang. Aplikasi dan WoWSQL harus lolos guard dahulu.
+[Unit]
+Description=Airbersih KSM Laravel queue worker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=airbersih
+Group=airbersih
+WorkingDirectory=/srv/airbersih/current/web
+ExecStart=/usr/bin/php artisan queue:work --sleep=3 --tries=2 --timeout=180 --max-time=3600
+Restart=always
+RestartSec=5
+TimeoutStopSec=210
+KillSignal=SIGTERM
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,42 @@
+name: Quality
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: pdo_pgsql, gd, zip, mbstring, intl, bcmath
+          tools: composer:v2
+          coverage: none
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: composer validate --strict
+      - run: composer install --no-interaction --prefer-dist
+      - run: vendor/bin/pint --test
+      - name: PHP syntax
+        run: find app bootstrap config database routes scripts tests -name '*.php' -not -path 'bootstrap/cache/*' -print0 | xargs -0 -n1 php -l
+      - run: npm ci
+      - run: npm run build
+      - run: node --check tests/browser/flow.cjs
+      - run: node --check tests/browser/operational.cjs
+      - run: node --check tests/browser/operational-flow.cjs
+      - run: composer audit --locked
+      - run: npm audit --audit-level=high
+      # Database/browser integration is deliberately run by scripts/verify.ps1
+      # against the isolated Aiven test target. This job has no cloud credentials.

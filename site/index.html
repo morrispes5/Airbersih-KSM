@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kenali Airbersih KSM RT05: alur pelanggan, meter, tagihan, pembayaran, buku kas, dan panduan untuk pengurus serta agent AI.">
+  <meta name="theme-color" content="#073f4b">
+  <title>Airbersih KSM — Panduan pengurus dan alur aplikasi</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#isi">Langsung ke isi</a>
+  <header class="shell masthead">
+    <a class="brand" href="#"><span class="watermark" aria-hidden="true">≈</span><span>Airbersih <strong>KSM</strong><small>Banyu Bening · RT05</small></span></a>
+    <nav aria-label="Navigasi utama"><a href="#alur">Alur kerja</a><a href="#contoh">Contoh hitungan</a><a href="#agent">Untuk AI</a></nav>
+  </header>
+  <main id="isi">
+    <section class="hero shell">
+      <div><p class="eyebrow">Panduan publik · tanpa login</p><h1>Dari angka meter,<br>jadi tagihan<br><em>yang jelas.</em></h1><p class="intro">Satu tempat bagi pengurus RT untuk mencatat pelanggan, pemakaian air, pembayaran, dan uang kas.</p><div class="actions"><a class="button primary" href="#alur">Pahami cara kerjanya <span aria-hidden="true">↓</span></a><a class="button" href="https://github.com/morrispes5/Airbersih-KSM">Lihat kode di GitHub ↗</a></div></div>
+      <aside class="journey" aria-label="Gambaran perjalanan pencatatan"><p class="eyebrow">Satu rumah, satu alur</p><ol><li><span>01</span><div><strong>Kenali pelanggannya</strong><p>Warga, rumah, dan nomor meter.</p></div></li><li><span>02</span><div><strong>Catat pemakaiannya</strong><p>Angka meter berikutnya − angka sebelumnya.</p></div></li><li><span>03</span><div><strong>Terbitkan tagihannya</strong><p>Periksa hitungan dan lembar PDF.</p></div></li><li><span>04</span><div><strong>Cocokkan uangnya</strong><p>Pembayaran diterima → kas dan laporan.</p></div></li></ol><p class="journey-note">Buku pelanggan + buku meter + kuitansi + buku kas.</p></aside>
+    </section>
+    <div class="status-band"><div class="shell"><strong>Status 19 Oktober 2026</strong><p>Halaman ini menjelaskan aplikasi. Kode tersedia di GitHub dan proyek WoWSQL sudah terbaca melalui plugin. <strong>Aplikasi transaksi belum dihosting publik.</strong></p></div></div>
+    <section class="shell section" id="alur">
+      <p class="eyebrow">Cara menggunakan</p><h2>Siapkan sekali.<br>Lalu ulangi setiap bulan.</h2><div class="two-col">
+        <div><h3>Persiapan pertama</h3><ol class="steps"><li><strong>Daftarkan pelanggan dan rumahnya.</strong><p>Isi nama, alamat, sambungan, nomor meter, dan petugas.</p></li><li><strong>Simpan angka meter pertama.</strong><p>Catat angka yang terlihat, tanggal, dan foto. Ini pembanding untuk pembacaan berikutnya.</p></li><li><strong>Cocokkan uang awal.</strong><p>Periksa kas dan rekening. Isi nol hanya jika jumlahnya sudah dipastikan nol.</p></li></ol></div>
+        <div><h3>Pekerjaan bulanan</h3><ol class="steps"><li><strong>Catat meter terbaru.</strong><p>Petugas mengisi angka dan foto; bendahara memeriksa.</p></li><li><strong>Periksa lalu terbitkan tagihan.</strong><p>Pemakaian × tarif + administrasi. Rancangan diperiksa sebelum diterbitkan.</p></li><li><strong>Catat pembayaran yang diterima.</strong><p>Transfer menunggu pengecekan rekening. Penerimaan otomatis masuk buku kas.</p></li><li><strong>Periksa laporan.</strong><p>Catat listrik/perawatan, cocokkan sisa uang, dan buat cadangan data.</p></li></ol></div>
+      </div>
+      <p class="note">Angka meter pertama belum menghasilkan tagihan. Perlu pembacaan berikutnya untuk menghitung pemakaian.</p>
+    </section>
+    <section class="example-wrap" id="contoh"><div class="shell section"><p class="eyebrow">Simulasi penjelasan · data contoh</p><h2>Coba satu rumah.</h2><p>Ubah angka meter terbaru untuk melihat hubungannya dengan tagihan. Tidak ada data yang disimpan.</p><div class="calculator"><div class="inputs"><label for="awal">Angka meter sebelumnya (m³)<input id="awal" type="number" value="100" min="0" max="99999999999.999" step="0.001" required></label><label for="akhir">Angka meter terbaru (m³)<input id="akhir" type="number" value="130" min="0" max="99999999999.999" step="0.001" required></label><p>Tarif contoh Rp10.000/m³ + administrasi Rp5.000 per tagihan. Tarif aktual mengikuti aturan yang disahkan pengurus.</p></div><div class="calculation" aria-live="polite"><p>Pemakaian air</p><strong id="pemakaian">30 m³</strong><hr><p>Total tagihan contoh</p><strong id="total">Rp305.000</strong><p id="rincian">Rp300.000 pemakaian + Rp5.000 administrasi</p><p id="kesalahan" role="alert" hidden></p></div></div></div></section>
+    <section class="shell section"><p class="eyebrow">Pembagian pekerjaan</p><h2>Tiap pengurus punya tugas.</h2><div class="roles"><article><span>01 / Pengurus utama</span><h3>Mengatur dan menyetujui.</h3><p>Akun, tarif, saldo awal, persetujuan khusus, serta salinan cadangan.</p></article><article><span>02 / Bendahara</span><h3>Memeriksa dan membukukan.</h3><p>Meter, tagihan, penerimaan pembayaran, biaya, kas, dan laporan.</p></article><article><span>03 / Petugas meter</span><h3>Mencatat di rumah warga.</h3><p>Angka meter dan foto untuk sambungan yang ditugaskan kepadanya.</p></article></div><p class="note">Alur masuk aplikasi: buka alamat → login → Beranda → pilih menu sesuai tugas akun. Portal warga belum tersedia.</p></section>
+    <section class="shell section history"><div><p class="eyebrow">Tentang data lama</p><h2>Excel menjadi sumber<br>yang bisa ditelusuri.</h2></div><div><p>Daftar 51 anggota per Desember 2025 adalah riwayat. Status saat itu belum memastikan siapa yang memakai air sekarang.</p><p>Pengurus perlu memeriksa pelanggan aktif, rumah, angka meter pertama, serta uang awal. Angka yang belum diketahui tetap kosong.</p><p>Contoh di halaman ini tidak mewakili transaksi atau saldo warga.</p></div></section>
+    <section class="agent-wrap" id="agent"><div class="shell section"><p class="eyebrow">Konteks yang bisa dibaca agent</p><h2>Kenali aplikasinya,<br>lalu lihat sumbernya.</h2><p>Penjelasan inti halaman ini tersedia sebagai HTML tanpa perlu menjalankan JavaScript. Repository memuat peta kode, alur, status cloud, dan batas akses data.</p><div class="actions"><a class="button primary" href="https://github.com/morrispes5/Airbersih-KSM/blob/main/AI_START_HERE.md">Baca AI_START_HERE.md ↗</a><a class="button" href="llms.txt">Baca ringkasan teks</a><a class="button" href="https://github.com/morrispes5/Airbersih-KSM/blob/main/docs/PANDUAN_PENGURUS.md">Panduan pengurus ↗</a></div><div class="technical"><h3>Di belakang layar</h3><p>Browser → Laravel/Livewire → PostgreSQL + penyimpanan berkas privat.</p><p>GitHub menyimpan kode. GitHub Pages menayangkan panduan ini. WoWSQL menyiapkan database cloud; koneksi aplikasi dan server Laravel masih memerlukan penerapan dan pengujian. Jalur server yang direncanakan memakai PHP dan worker langsung, tanpa Docker.</p><a href="https://github.com/morrispes5/Airbersih-KSM/blob/main/docs/CLOUD_STATUS.md">Periksa status cloud selengkapnya ↗</a></div></div></section>
+  </main>
+  <footer class="shell"><p><strong>Airbersih KSM</strong> · KSM Banyu Bening RT05</p><p>Panduan publik. Data warga, akun, dan dokumen operasional tetap privat.</p></footer>
+</body>
+</html>

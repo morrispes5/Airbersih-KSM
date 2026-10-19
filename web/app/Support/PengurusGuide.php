@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Support;
+
+final class PengurusGuide
+{
+    public static function pages(): array
+    {
+        return [
+            'dashboard' => ['name' => 'Beranda', 'purpose' => 'Lihat pekerjaan yang perlu diselesaikan dan ringkasan bulan ini.', 'steps' => ['Jika baru mulai, ikuti kotak Mulai dari sini secara berurutan.', 'Setelah data awal lengkap, buka Catat meter untuk kegiatan bulanan.', 'Periksa tagihan yang belum dibayar dan uang yang benar-benar diterima.']],
+            'customers' => ['name' => 'Daftar pelanggan', 'purpose' => 'Daftarkan warga yang memakai air dan rumah yang akan dicatat meternya.', 'steps' => ['Isi nama, nomor HP bila ada, dan alamat. Pilih Simpan pelanggan.', 'Pada Sambungan air rumah, pilih pelanggan tadi lalu isi alamat dan nomor meter yang terpasang.', 'Simpan sambungan. Setelah itu rumah tersebut muncul di pilihan Catat meter. Daftar anggota lama belum otomatis menjadi pelanggan air.']],
+            'meters' => ['name' => 'Catat meter', 'purpose' => 'Simpan angka pada meter beserta tanggal dan fotonya untuk menghitung pemakaian air.', 'steps' => ['Pertama kali: pilih rumah di Angka meter pertama, isi angka yang terlihat, tanggal, foto, dan alasan pencatatan.', 'Pada pembacaan berikutnya, pilih rumah di Catat angka meter lalu isi angka terbaru serta foto.', 'Bendahara memeriksa hasil catatan. Angka pertama saja belum menghasilkan tagihan; perlu pembacaan berikutnya.']],
+            'invoices' => ['name' => 'Tagihan air', 'purpose' => 'Periksa pemakaian dan jumlah yang harus dibayar pelanggan.', 'steps' => ['Pastikan catatan meter bulan pilihan sudah diperiksa di Catat meter.', 'Pilih rumah dan batas tanggal pembayaran, lalu buat rancangan tagihan.', 'Buka Lihat tagihan, periksa angka dan total, lalu Terbitkan tagihan jika benar.']],
+            'payments' => ['name' => 'Terima pembayaran', 'purpose' => 'Catat uang yang benar-benar diterima untuk melunasi tagihan.', 'steps' => ['Pilih tagihan yang belum dibayar. Jumlah pembayaran harus sama dengan total tagihan.', 'Pilih tunai atau transfer, tanggal diterima, dan tempat uang diterima. Lampirkan bukti untuk transfer.', 'Untuk transfer, bendahara memeriksa uang di rekening lalu memilih Konfirmasi diterima. Foto bukti saja belum menyatakan uang masuk.']],
+            'finance' => ['name' => 'Buku kas', 'purpose' => 'Catat uang tunai dan rekening bank, termasuk biaya listrik atau perawatan.', 'steps' => ['Saat baru mulai, pengurus utama mengisi Uang saat mulai mencatat untuk kas dan rekening. Cocokkan dengan uang yang benar-benar tersedia.', 'Setelah itu catat pemasukan lain atau pengeluaran beserta tanggal dan keterangannya.', 'Pembayaran tagihan yang diterima tercatat dari Terima pembayaran. Jangan dimasukkan lagi sebagai pemasukan lain.']],
+            'reports' => ['name' => 'Laporan bulanan', 'purpose' => 'Lihat ringkasan uang dan tagihan untuk diperiksa bersama pengurus.', 'steps' => ['Pilih bulan laporan di kanan atas.', 'Cocokkan uang masuk, uang keluar, dan sisa uang dengan buku kas serta bukti pembayaran.', 'Unduh laporan untuk dicetak atau dibuka di Excel. Tagihan yang belum dibayar belum menjadi uang yang diterima.']],
+            'imports' => ['name' => 'Data Excel & riwayat', 'purpose' => 'Lihat catatan lama dari pengurus dan periksa asal datanya.', 'steps' => ['Buka Riwayat anggota Desember 2025 untuk melihat daftar yang diberikan pengurus RT.', 'Status Aktif/Pasif adalah keadaan pada sumber lama, bukan kepastian pemakaian air saat ini.', 'Untuk mulai mencatat air sekarang, daftarkan pelanggan dan sambungannya setelah diperiksa. Jangan menganggap daftar anggota sebagai tagihan atau pembayaran.']],
+            'audit' => ['name' => 'Catatan perubahan', 'purpose' => 'Cari tahu siapa yang mencatat atau memperbaiki data dan kapan dilakukan.', 'steps' => ['Lihat waktu, kegiatan, dan nama pengurus pada daftar.', 'Cari nama pengurus untuk melihat kegiatan yang dilakukannya.', 'Jika ada angka yang keliru, periksa catatan asal dan gunakan tindakan koreksi pada halaman terkait.']],
+            'settings' => ['name' => 'Pengaturan', 'purpose' => 'Atur akun pengurus, tarif air, dan salinan data untuk berjaga-jaga.', 'steps' => ['Pengurus utama membuat akun terpisah untuk bendahara dan petugas pencatat meter.', 'Tarif baru mempunyai tanggal mulai berlaku. Tagihan yang sudah diterbitkan mempertahankan rincian sebelumnya.', 'Pilih Buat salinan cadangan setelah perubahan penting. Tunggu sampai ada keterangan selesai; salinan ini berguna untuk mengembalikan data jika terjadi masalah.']],
+            'help' => ['name' => 'Panduan penggunaan', 'purpose' => 'Mulai dari langkah pertama dan kenali fungsi setiap menu.', 'steps' => []],
+        ];
+    }
+}

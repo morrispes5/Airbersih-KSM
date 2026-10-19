@@ -1,0 +1,28 @@
+# Sumber privat dan hasil pemeriksaan yang berisi data pelanggan.
+/private/
+/tmp/
+.env
+.env.*
+!.env.example
+*.xlsx
+*.xls
+*.csv
+*.pdf
+
+# Dependensi dan hasil build aplikasi (bila implementasi dimulai).
+/node_modules/
+/vendor/
+/storage/
+/public/build/
+/web/vendor/
+/web/node_modules/
+/web/.env
+/web/.env.testing
+/web/.env.migration
+/web/storage/
+/web/bootstrap/cache/*.php
+/web/public/build/
+/web/test-results/
+/web/playwright-report/
+/web/.phpunit.result.cache
+/web/database/*.sqlite*

@@ -1,0 +1,3 @@
+@props(['label','model','type'=>'text','step'=>null,'placeholder'=>'','help'=>''])
+@php($fieldError = $errors->first($model) ?: $errors->first(\Illuminate\Support\Str::after($model, 'form.')))
+<label class="field"><span>{{ $label }}</span><input name="{{ str_replace('.', '_', $model) }}" type="{{ $type }}" wire:model="{{ $model }}" @if($step) step="{{ $step }}" @endif placeholder="{{ $placeholder }}" @if($fieldError) aria-invalid="true" @endif {{ $attributes->merge(['autocomplete'=>'off']) }}>@if($help)<small class="field-help">{{ $help }}</small>@endif @if($fieldError)<small class="field-error">{{ \App\Support\PengurusWords::plain($fieldError) }}</small>@endif</label>
